@@ -83,7 +83,6 @@ show_help () {
 }
 
 install () {
-  echo "Got $1"
   case "$1" in
     --help ) show_help ;;
     --update ) update_repo ;;
