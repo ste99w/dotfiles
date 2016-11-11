@@ -1,0 +1,67 @@
+- Reinstall all the needed plugins on Vim and configure them:
+  - Use the existing vimrc as a start:
+    - Plugins to install:
+      - Vundle.vim (VundleVim/Vundle.vim) # must install
+      - nerdtree (scrooloose/nerdtree)
+        - nerdtree-git-plugin (Xuyuanp/nerdtree-git-plugin) # to show git flags
+      - nerdcommenter (scrooloose/nerdcommenter)
+      - vim-easymotion (easymotion/vim-easymotion)
+      # - ctrlp (change of mind, convinced to use unite.vim)
+      - unite.vim: (Shougo/unite.vim)
+        - neomru.vim (Shougo/neomru.vim)
+        - remap caps lock key to control
+      - vim-fugitive (tpope/vim-fugitive)
+      - ultisnips (SirVer/ultisnips)
+        - vim-snippets (honza/vim-snippets)
+      - syntastic (vim-syntastic/syntastic)
+      - clang_complete (Rip-Rip/clang_complete)
+      - vim-clang-format (rhysd/vim-clang-format)
+      - vim-autocomplpop (othree/vim-autocomplpop)
+      - vim-airline (vim-airline/vim-airline)
+        - vim-airline-themes (vim-airline/vim-airline-themes)
+      - vim-tomorrow-theme (chriskempson/vim-tomorrow-theme)
+
+    - Plugins nice to have:
+      - base16-vim (color scheme)
+      - papercolor-theme (NLKNguyen/papercolor-theme) # color scheme based on Google Material Design color palette
+        - For better syntax highlighting, checkout NLKNguyen/c-syntax.vim
+      - vim-startify (mhinz/vim-startify) (start screen like IDE)
+      - vim-multiple-cursors (terryma/vim-multiple-cursors)
+
+    - Plugins hard to choose from:
+      - supertab (ervandew/supertab)
+        - vim-autocomplpop (bitbucket.org/ns9tks/vim-autocomplpop/)
+      - neocomplete (Shougo/neocomplete.vim)
+      - YouCompleteMe (Valloric/YouCompleteMe)
+      - VimL script handcraft # Please try this with help from vim.wikia.com/wiki/VimTip566
+
+      - A word for Vim completion: >
+        Apparently Vim supports all common possible completion types, for situations where there's no support, 'completefunc' is used to define user defined completion, for filetype specific completion, there's 'omnifunc' to customize.
+        The thing is not to find the completion, but to invoke them automatically so that no '<Tab>' or any other key presses are needed to show the completion options.
+        Hence, I will choose the plugin vim-autocomplpop (othree/vim-autocomplpop).
+
+    - Plugins just to know it's out there:
+      - the_silver_searcher (ggreer/the_silver_searcher)
+      - yapf (google/yapf) (A formatter for Python files)
+      - editorconfig
+
+    - Plugins that provide resources to other plugins:
+      - vimified (zaiste/vimified)
+      - vimconf (timss/vimconf)
+
+- About Plugin Installations:
+  - Decide on key mappings again.
+
+- Q/A:
+  - Q: Vim use multiple fonts for characters not in one font?
+    A: No, it's not possible to use fontconfig to display characters not found in one font using another font.
+
+- Create dotfiles repo:
+  - bashrc
+  - inputrc
+  - i3wm config
+  - vimrc
+  - gvimrc
+  - ipython
+  - gitconfig
+  - fontconfig
