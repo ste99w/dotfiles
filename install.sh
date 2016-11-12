@@ -30,6 +30,11 @@ setup_vim () {
   git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
   # Install other plugins.
   vim +PluginInstall +qall
+
+  # Post plugin installation actions.
+  # vimproc.vim plugin
+  cd ~/.vim/bundle/vimproc.vim/
+  make
 }
 
 setup_bashrc () {
