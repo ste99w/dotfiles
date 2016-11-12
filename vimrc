@@ -29,18 +29,6 @@ set directory=~/tmp/vim.d/swap.d/,/tmp/
 "> Set history to a large number.
 set history=1000
 
-"> Highlight the column boundary.
-" set colorcolumn=80
-" highlight ColorColumn ctermbg=black
-"  Set this after the Airline Plugin Settings to behave correctly.
-
-"> Set window height.
-" set lines=27
-
-"> Tabs or spaces? Neither, it's a war.
-"  Tab settings are in the plugin folder containing specific settings for
-"  different filetypes.
-
 "> Hide a buffer instead of close it.
 "  This can be very useful when switch between buffers.
 set hidden
