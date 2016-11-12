@@ -202,8 +202,9 @@ map <Leader>l <Plug>(easymotion-lineforward)
 "> unite.vim
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim' " MRU plugin includes unite.vim MRU sources
+Plugin 'Shougo/vimproc.vim' " Needed by file_rec/async resource
 " The following settings are from https://youtu.be/fwqhBSxhGU0?t=1271.
-nnoremap <C-u> :Unite file file_rec/async buffer file_mru<CR>
+nnoremap <C-u> :Unite buffer file_mru file file_rec/async<CR>
 nnoremap <C-;> :Unite line<CR>
 
 "> vim-fugitive
