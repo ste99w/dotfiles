@@ -139,21 +139,11 @@ vnoremap <S-Tab> <C-B>
 
 " }}} < Key-mappings
 
-" {{{ > Plugin Settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" {{{ > Plugin Settings (vim-plug)
+call plug#begin('~/.vim/plugged')
 
 "> nerdtree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 if !has('gui_running')
   let g:NERDTreeDirArrowExpandable = '+'
   let g:NERDTreeDirArrowCollapsible='~'
@@ -166,11 +156,8 @@ let NERDTreeIgnore=['__pycache__$[[dir]]']
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>nc :NERDTreeCWD<CR>
 
-"> nerdtree-git-plugin
-" Plugin 'Xuyuanp/nerdtree-git-plugin'
-
 "> nerdcommenter
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Add a space after the left delimiter and before the right.
 let NERDSpaceDelims=1
 "  Add alternative delimiters.
@@ -179,7 +166,7 @@ nmap <Leader><Space> <Plug>NERDCommenterToggle
 vmap <Leader><Space> <Plug>NERDCommenterToggle
 
 "> vim-easymotion
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 " Use single <Leader>.
 map <Leader> <Plug>(easymotion-prefix)
 " Disable default mappings.
@@ -200,21 +187,20 @@ map <Leader>h <Plug>(easymotion-linebackward)
 map <Leader>l <Plug>(easymotion-lineforward)
 
 "> unite.vim
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim' " MRU plugin includes unite.vim MRU sources
-Plugin 'Shougo/vimproc.vim' " Needed by file_rec/async resource
+" neomru.vim plugin includes unite.vim MRU sources.
+" vimproc.vim is needed by file_rec/async resource.
+Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " The following settings are from https://youtu.be/fwqhBSxhGU0?t=1271.
 nnoremap <C-u> :Unite buffer file_mru file file_rec/async<CR>
 nnoremap <C-;> :Unite line<CR>
 
 "> vim-fugitive
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 
 "> ultisnips
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsSnippetDirectories=['ultisnips', 'bundle/vim-snippets/UltiSnips', 'bundle/custom/snips']
 let g:UltiSnipsSnippetsDir='~/.vim/bundle/custom/snips/'
 let g:UltiSnipExpandTrigger='<tab>'
@@ -226,7 +212,7 @@ let g:ultisnips_python_quoting_style = 'single'
 let g:ultisnips_python_style = 'sphinx'
 
 "> syntastic
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -236,20 +222,19 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "> clang_complete
-Plugin 'Rip-Rip/clang_complete'
+Plug 'Rip-Rip/clang_complete'
 " This only works if the system is Arch Linux 64bit.
 let g:clang_library_path='/usr/lib64/libclang.so'
 
 "> vim-clang-format
-Plugin 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 
 "> vim-autocomplpop
-Plugin 'othree/vim-autocomplpop'
-Plugin 'L9' " Needed by vim-autocomplpop, github: vim-scripts/L9
+Plug 'othree/vim-autocomplpop'
+Plug 'L9' " Needed by vim-autocomplpop, github: vim-scripts/L9
 
 "> vim-airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_skip_empty_sections = 1
@@ -259,44 +244,42 @@ endif
 let g:airline_symbols.notexists = '#'
 
 "> vim-tomorrow-theme
-Plugin 'chriskempson/vim-tomorrow-theme'
+Plug 'chriskempson/vim-tomorrow-theme'
+" Set colorscheme after all plugins are loaded.
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" Make sure you use single quotes
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" Install Plugins:
-" Launch vim and run :PluginInstall
-" To install from command line: vim +PluginInstall +qall
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" Plug 'junegunn/vim-easy-align'
 
-" }}} < Plugin Settings
+" Any valid git URL is allowed
+" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Group dependencies, vim-snippets depends on ultisnips
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using a non-master branch
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+" Plug 'fatih/vim-go', { 'tag': '*' }
+
+" Plugin options
+" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Unmanaged plugin (manually installed and updated)
+" Plug '~/my-prototype-plugin'
+
+" Add plugins to &runtimepath
+call plug#end()
+" }}} < Plugin Settings (vim-plug)
 
 " {{{ > Post Plugin Settings
 colorscheme Tomorrow

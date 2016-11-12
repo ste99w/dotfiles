@@ -23,18 +23,13 @@ setup_vim () {
   mkdir -p ~/tmp/vim.d/{back,undo,swap}.d
 
   echo 'Setting up vim ...'
-  # Install Vundle.vim plugin.
-  echo 'Installing Vundle.vim ...'
-  # The directory Vundle.vim is installed should be the same of the runtime
-  # path set in vimrc.
-  git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-  # Install other plugins.
-  vim +PluginInstall +qall
 
-  # Post plugin installation actions.
-  # vimproc.vim plugin
-  cd ~/.vim/bundle/vimproc.vim/
-  make
+  # Install vim-plug plugin.
+  echo 'Installing vim-plug ...'
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo 'Installing plugins ...'
+  vim +PlugInstall +qall
 }
 
 setup_bashrc () {

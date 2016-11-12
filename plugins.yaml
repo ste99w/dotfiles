@@ -1,14 +1,18 @@
 - Reinstall all the needed plugins on Vim and configure them:
   - Use the existing vimrc as a start:
     - Plugins to install:
-      - Vundle.vim (VundleVim/Vundle.vim) # must install
+      - Vundle.vim (VundleVim/Vundle.vim):
+        - Use vim-plug instead # must install
+        - vim-plug (junegunn/vim-plug)
       - nerdtree (scrooloose/nerdtree)
-        - nerdtree-git-plugin (Xuyuanp/nerdtree-git-plugin) # to show git flags
+        - nerdtree-git-plugin (Xuyuanp/nerdtree-git-plugin): # to show git flags
+          not installed
       - nerdcommenter (scrooloose/nerdcommenter)
       - vim-easymotion (easymotion/vim-easymotion)
       # - ctrlp (change of mind, convinced to use unite.vim)
       - unite.vim: (Shougo/unite.vim)
         - neomru.vim (Shougo/neomru.vim)
+        - vimproc.vim (Shougo/vimproc.vim)
         - remap caps lock key to control
       - vim-fugitive (tpope/vim-fugitive)
       - ultisnips (SirVer/ultisnips)
