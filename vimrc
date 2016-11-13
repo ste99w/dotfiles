@@ -53,7 +53,8 @@ set guioptions-=T
 set guioptions-=r
 " Font settings
 " set guifont=consolas:h11
-set guifont=monoid\ 9
+" set guifont=monoid\ 9
+set guifont=Roboto\ Mono\ 12
 " Increase line height.
 set linespace=2
 " Always show status line.
@@ -247,6 +248,10 @@ let g:airline_symbols.notexists = '#'
 Plug 'chriskempson/vim-tomorrow-theme'
 " Set colorscheme after all plugins are loaded.
 
+"> papercolor-theme
+Plug 'NLKNguyen/papercolor-theme'
+" Set colorscheme after all plugins are loaded.
+
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -282,7 +287,7 @@ call plug#end()
 " }}} < Plugin Settings (vim-plug)
 
 " {{{ > Post Plugin Settings
-colorscheme Tomorrow
+colorscheme PaperColor
 " }}} < Post Plugin Settings
 
 " {{{ > Auto Commands
