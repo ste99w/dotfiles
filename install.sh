@@ -38,6 +38,15 @@ setup_xterm () {
   ln -sfn $DOTFILES_DIR/Xresources.d ~/.Xresources.d
 }
 
+setup_xinitrc () {
+  echo 'Setting up .xinitrc ...'
+  mv ~/.xinitrc ~/.xinitrc.orig
+  ln -sfn $DOTFILES_DIR/xinitrc ~/.xinitrc
+
+  # Set up wallpapers
+  git clone https://github.com/ste99w/material-wallpapers ~/.wallpapers
+}
+
 setup_bashrc () {
   echo 'Creating symlink ~/.bashrc ...'
   ln -sfn $DOTFILES_DIR/bashrc ~/.bashrc
@@ -68,6 +77,7 @@ setup_others () {
 setup_all () {
   setup_vim
   setup_xterm
+  setup_xinitrc
   setup_others
 }
 
@@ -82,9 +92,10 @@ show_help () {
   echo 'Options:'
   echo -e "--help\tPrint this usage"
   echo -e "--update\tUpdate dotfiles reposity to the lastest"
-  echo -e "--all\tSetup Vim, bashrc, inputrc, i3 config, and font config"
+  echo -e "--all\tSetup Vim, Xterm, xinitrc, i3wm, bashrc, inputrc, i3 config, and font config"
   echo -e "--vim\tSetup Vim"
   echo -e "--xterm\tSetup Xterm"
+  echo -e "--xinitrc\tSetup xinitrc"
   echo -e "--bashrc\tSetup bashrc"
   echo -e "--inputrc\tSetup inputrc"
   echo -e "--i3-config\tSetup i3wm config"
@@ -97,6 +108,7 @@ install () {
     --all ) setup_all ;;
     --vim ) setup_vim ;;
     --xterm ) setup_xterm ;;
+    --xinitrc ) setup_xinitrc ;;
     --bashrc ) setup_bashrc ;;
     --inputrc ) setup_inputrc ;;
     --i3-config ) setup_i3wm ;;
