@@ -293,7 +293,7 @@ colorscheme PaperColor
 " {{{ > Auto Commands
 
 "> Automatic reloading .vimrc after each :write.
-autocmd! BufWritePost .vimrc source %
+autocmd! BufWritePost vimrc source %
 
 "> Remove trailing whitespaces.
 autocmd BufWritePre * :%s/\s\+$//e
