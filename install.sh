@@ -32,6 +32,12 @@ setup_vim () {
   vim +PlugInstall +qall
 }
 
+setup_xterm () {
+  echo 'Setting up xterm ...'
+  ln -sfn $DOTFILES_DIR/Xresources ~/.Xresources
+  ln -sfn $DOTFILES_DIR/Xresources.d ~/.Xresources.d
+}
+
 setup_bashrc () {
   echo 'Creating symlink ~/.bashrc ...'
   ln -sfn $DOTFILES_DIR/bashrc ~/.bashrc
@@ -61,6 +67,7 @@ setup_others () {
 
 setup_all () {
   setup_vim
+  setup_xterm
   setup_others
 }
 
@@ -77,6 +84,7 @@ show_help () {
   echo -e "--update\tUpdate dotfiles reposity to the lastest"
   echo -e "--all\tSetup Vim, bashrc, inputrc, i3 config, and font config"
   echo -e "--vim\tSetup Vim"
+  echo -e "--xterm\tSetup Xterm"
   echo -e "--bashrc\tSetup bashrc"
   echo -e "--inputrc\tSetup inputrc"
   echo -e "--i3-config\tSetup i3wm config"
@@ -88,6 +96,7 @@ install () {
     --update ) update_repo ;;
     --all ) setup_all ;;
     --vim ) setup_vim ;;
+    --xterm ) setup_xterm ;;
     --bashrc ) setup_bashrc ;;
     --inputrc ) setup_inputrc ;;
     --i3-config ) setup_i3wm ;;
