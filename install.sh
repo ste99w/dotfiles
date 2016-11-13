@@ -48,6 +48,8 @@ setup_xinitrc () {
 }
 
 setup_bashrc () {
+  echo 'Setting up bashrc ...'
+  cp /usr/share/git/git-prompt.sh ~/.git-prompt.sh
   echo 'Creating symlink ~/.bashrc ...'
   ln -sfn $DOTFILES_DIR/bashrc ~/.bashrc
 }
@@ -79,6 +81,9 @@ setup_all () {
   setup_xterm
   setup_xinitrc
   setup_others
+
+  echo ''
+  echo 'You may need to logout and then login to make everything take effect!'
 }
 
 update_repo () {
