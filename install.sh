@@ -49,12 +49,15 @@ setup_xinitrc () {
 
 setup_bashrc () {
   echo 'Setting up bashrc ...'
+  mv ~/.bashrc ~/.bashrc.orig
   cp /usr/share/git/git-prompt.sh ~/.git-prompt.sh
   echo 'Creating symlink ~/.bashrc ...'
   ln -sfn $DOTFILES_DIR/bashrc ~/.bashrc
 }
 
 setup_inputrc() {
+  echo 'Setting up inputrc ...'
+  mv ~/.inputrc ~/.inputrc.orig 2&> /dev/null
   echo 'Creating symlink ~/.inputrc ...'
   ln -sfn $DOTFILES_DIR/inputrc ~/.inputrc
 }
