@@ -33,10 +33,12 @@ GIT_PS1_SHOWUPSTREAM="auto"
 BLUE="\[$(tput setaf 4)\]"
 ORANGE="\[$(tput setaf 3)\]"
 UNDERLINE="\[$(tput smul)\]"
-NO_UL="\[$(tput rmul)\]"
 BOLD="\[$(tput bold)\]"
 RESET="\[$(tput sgr0)\]"
-PS1="${UNDERLINE}${BLUE}\w${ORANGE}$(__git_ps1 '(%s)')${RESET}${BOLD}\$${RESET} "
+# According to git-prompt.sh, __git_ps1 output is inserted between the two
+# string arguments. To update xterm window title string, we append the
+# original PROMPT_COMMAND value.
+PROMPT_COMMAND='__git_ps1 "${UNDERLINE}${BLUE}\w${ORANGE}" "${RESET}${BOLD}\$${RESET} ";'$PROMPT_COMMAND
 
 # Enable color support of ls and also add handy aliases.
 if [ -x /usr/bin/dircolors ]; then
