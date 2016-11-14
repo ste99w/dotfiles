@@ -68,6 +68,18 @@ setup_gitconfig () {
   ln -sfn $DOTFILES_DIR/gitconfig ~/.gitconfig
 }
 
+setup_ipython () {
+  echo 'Setting up ipython config ...'
+  hash ipython &> /dev/null
+  if [ $? -eq 1 ]; then
+    echo 'ipython not found, please install it first, then try again.'
+  fi
+  if [ -f ~/.ipython/profile_default/ipython_config.py ]; then
+    mv ~/.ipython/profile_default/ipython_config.py ~/.ipython/profile_default/ipython_config.py.orig
+  fi
+  ln -sfn $DOTFILES_DIR/ipython_config.py ~/.ipython/profile_default/ipython_config.py
+}
+
 setup_i3wm () {
   echo 'Backing up original ~/.config/i3/config to ~/.config/i3/config.orig'
   mv ~/.config/i3/config ~/.config/i3/config.orig
@@ -90,6 +102,7 @@ setup_all () {
   setup_xterm
   setup_xinitrc
   setup_gitconfig
+  setup_ipython
   setup_others
 
   echo ''
@@ -114,6 +127,7 @@ show_help () {
   echo -e "--bashrc\tSetup bashrc"
   echo -e "--inputrc\tSetup inputrc"
   echo -e "--gitconfig\tSetup gitconfig"
+  echo -e "--ipython\tSetup ipython"
   echo -e "--i3-config\tSetup i3wm config"
 }
 
@@ -128,6 +142,7 @@ install () {
     --bashrc ) setup_bashrc ;;
     --inputrc ) setup_inputrc ;;
     --gitconfig ) setup_gitconfig ;;
+    --ipython ) setup_ipython ;;
     --i3-config ) setup_i3wm ;;
     '' ) show_help ;;
   esac
