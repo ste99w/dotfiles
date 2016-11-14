@@ -242,7 +242,7 @@ let g:airline_skip_empty_sections = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_symbols.notexists = '#'
+let g:airline_symbols.notexists = '%'
 
 "> vim-tomorrow-theme
 Plug 'chriskempson/vim-tomorrow-theme'
