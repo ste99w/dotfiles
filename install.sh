@@ -55,14 +55,20 @@ setup_bashrc () {
   ln -sfn $DOTFILES_DIR/bashrc ~/.bashrc
 }
 
-setup_inputrc() {
+setup_inputrc () {
   echo 'Setting up inputrc ...'
   mv ~/.inputrc ~/.inputrc.orig 2&> /dev/null
   echo 'Creating symlink ~/.inputrc ...'
   ln -sfn $DOTFILES_DIR/inputrc ~/.inputrc
 }
 
-setup_i3wm() {
+setup_gitconfig () {
+  echo 'Setting up gitconfig ...'
+  mv ~/.gitconfig ~/.gitconfig.orig 2&> /dev/null
+  ln -sfn $DOTFILES_DIR/gitconfig ~/.gitconfig
+}
+
+setup_i3wm () {
   echo 'Backing up original ~/.config/i3/config to ~/.config/i3/config.orig'
   mv ~/.config/i3/config ~/.config/i3/config.orig
   echo 'Creating symlink ~/.config/i3/config ...'
@@ -83,6 +89,7 @@ setup_all () {
   setup_vim
   setup_xterm
   setup_xinitrc
+  setup_gitconfig
   setup_others
 
   echo ''
@@ -106,6 +113,7 @@ show_help () {
   echo -e "--xinitrc\tSetup xinitrc"
   echo -e "--bashrc\tSetup bashrc"
   echo -e "--inputrc\tSetup inputrc"
+  echo -e "--gitconfig\tSetup gitconfig"
   echo -e "--i3-config\tSetup i3wm config"
 }
 
@@ -119,6 +127,7 @@ install () {
     --xinitrc ) setup_xinitrc ;;
     --bashrc ) setup_bashrc ;;
     --inputrc ) setup_inputrc ;;
+    --gitconfig ) setup_gitconfig ;;
     --i3-config ) setup_i3wm ;;
     '' ) show_help ;;
   esac

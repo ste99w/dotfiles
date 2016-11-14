@@ -1,0 +1,12 @@
+[alias]
+	unstage = reset HEAD --
+	lg = log --decorate --oneline --graph
+	la = log --decorate --oneline --graph --all
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	rb = rebase
+	nfm = merge --no-ff --log --edit
+[color]
+	ui = true
