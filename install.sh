@@ -57,14 +57,14 @@ setup_bashrc () {
 
 setup_inputrc () {
   echo 'Setting up inputrc ...'
-  mv ~/.inputrc ~/.inputrc.orig 2&> /dev/null
+  mv ~/.inputrc ~/.inputrc.orig &> /dev/null
   echo 'Creating symlink ~/.inputrc ...'
   ln -sfn $DOTFILES_DIR/inputrc ~/.inputrc
 }
 
 setup_gitconfig () {
   echo 'Setting up gitconfig ...'
-  mv ~/.gitconfig ~/.gitconfig.orig 2&> /dev/null
+  mv ~/.gitconfig ~/.gitconfig.orig &> /dev/null
   ln -sfn $DOTFILES_DIR/gitconfig ~/.gitconfig
 }
 
