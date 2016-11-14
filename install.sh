@@ -80,6 +80,12 @@ setup_ipython () {
   ln -sfn $DOTFILES_DIR/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 }
 
+setup_fontconfig () {
+  echo 'Setting up fontconfig ...'
+  mkdir -p ~/.config/fontconfig/
+  ln -sfn $DOTFILES_DIR/fonts.conf ~/.config/fontconfig/fonts.conf
+}
+
 setup_i3wm () {
   echo 'Backing up original ~/.config/i3/config to ~/.config/i3/config.orig'
   mv ~/.config/i3/config ~/.config/i3/config.orig
@@ -103,6 +109,7 @@ setup_all () {
   setup_xinitrc
   setup_gitconfig
   setup_ipython
+  setup_fontconfig
   setup_others
 
   echo ''
@@ -128,6 +135,7 @@ show_help () {
   echo -e "--inputrc\tSetup inputrc"
   echo -e "--gitconfig\tSetup gitconfig"
   echo -e "--ipython\tSetup ipython"
+  echo -e "--fontconfig\tSetup fontconfig"
   echo -e "--i3-config\tSetup i3wm config"
 }
 
@@ -143,6 +151,7 @@ install () {
     --inputrc ) setup_inputrc ;;
     --gitconfig ) setup_gitconfig ;;
     --ipython ) setup_ipython ;;
+    --fontconfig ) setup_fontconfig ;;
     --i3-config ) setup_i3wm ;;
     '' ) show_help ;;
   esac
