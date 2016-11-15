@@ -1,11 +1,12 @@
 #! /usr/bin/env bash
 # This file is tested under Arch Linux 64bit.
 
-DOTFILES_DIR=${DOTFILES_DIR:-"`dirname $0`/dotfiles"}
+DOTFILES_DIR="$( cd $(dirname $0) ; pwd -P )"
 
 create_symlinks () {
   if [ ! -e ~/.vim ]; then
     echo 'Creating symlink ~/.vim ...'
+    mkdir $DOTFILES_DIR/vim
     ln -sfn $DOTFILES_DIR/vim ~/.vim
   fi
 
@@ -16,13 +17,13 @@ create_symlinks () {
 }
 
 setup_vim () {
+  echo 'Setting up vim ...'
+
   create_symlinks
 
   # Make directories for Vim.
   # Those directories names should match the ones set in vimrc.
   mkdir -p ~/tmp/vim.d/{back,undo,swap}.d
-
-  echo 'Setting up vim ...'
 
   # Install vim-plug plugin.
   echo 'Installing vim-plug ...'
