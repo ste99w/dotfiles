@@ -91,10 +91,10 @@ setup_i3wm () {
   mkdir -p ~/.config/{i3,i3status}
   mv ~/.config/i3/config ~/.config/i3/config.orig &> /dev/null
   echo 'Creating symlink ~/.config/i3/config ...'
-  ln -sfn $DOTFILES_DIR/i3/config ~/.config/i3/config
+  ln -sfn $DOTFILES_DIR/i3config ~/.config/i3/config
   mv ~/.config/i3status/config ~/.config/i3status/config.orig &> /dev/null
   echo 'Creating symlink ~/.config/i3status/config ...'
-  ln -sfn $DOTFILES_DIR/i3status/config ~/.config/i3status/config
+  ln -sfn $DOTFILES_DIR/i3statusconfig ~/.config/i3status/config
 }
 
 setup_others () {
