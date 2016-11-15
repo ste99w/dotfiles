@@ -87,12 +87,12 @@ setup_fontconfig () {
 }
 
 setup_i3wm () {
-  echo 'Backing up original ~/.config/i3/config to ~/.config/i3/config.orig'
-  mv ~/.config/i3/config ~/.config/i3/config.orig
+  echo 'Setting up i3wm ...'
+  mkdir -p ~/.config/{i3,i3status}
+  mv ~/.config/i3/config ~/.config/i3/config.orig &> /dev/null
   echo 'Creating symlink ~/.config/i3/config ...'
   ln -sfn $DOTFILES_DIR/i3/config ~/.config/i3/config
-  echo 'Backing up original ~/.config/i3status/config to ~/.config/i3status/config.orig'
-  mv ~/.config/i3status/config ~/.config/i3status/config.orig
+  mv ~/.config/i3status/config ~/.config/i3status/config.orig &> /dev/null
   echo 'Creating symlink ~/.config/i3status/config ...'
   ln -sfn $DOTFILES_DIR/i3status/config ~/.config/i3status/config
 }
