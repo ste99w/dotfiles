@@ -26,6 +26,7 @@ shopt -s checkwinsize
 
 # Setup a nice prompt.
 source ~/.git-prompt.sh
+source /usr/share/git/completion/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
