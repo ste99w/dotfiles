@@ -9,4 +9,5 @@ xcompmgr &
 feh --bg-fill --randomize ~/.wallpapers
 # Make Gtk applications, e.g. gvim follow fontconfig settings.
 xsettingsd &
+VBoxClient-all &
 exec i3
