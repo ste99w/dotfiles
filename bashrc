@@ -88,4 +88,4 @@ alias gd='git diff'
 alias json='python -m json.tool'
 
 export EDITOR="vim"
-export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin/
+export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin/
