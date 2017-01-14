@@ -43,14 +43,15 @@ set wildignore=*~,*.bak,*.pyc,*.class,*.o,*.obj
 
 "> Set text width for all files.
 "  Filetype plugin should override this.
-set textwidth=78
+" set textwidth=78
 
 " No menu
 set guioptions-=m
 " No toolbar
 set guioptions-=T
-" No right side scrollbar
+" No left or right side scrollbar
 set guioptions-=r
+set guioptions-=L
 " Font settings
 " set guifont=consolas:h11
 " set guifont=monoid\ 9
@@ -61,6 +62,9 @@ set linespace=2
 set laststatus=2
 " Put cursor in the middle always.
 set scrolloff=999
+
+" Auto insert the only match.
+set completeopt+=longest
 
 " }}} < General Settings
 
@@ -149,13 +153,13 @@ if !has('gui_running')
   let g:NERDTreeDirArrowExpandable = '+'
   let g:NERDTreeDirArrowCollapsible='~'
 endif
-let NERDTreeWinSize=50
+let NERDTreeWinSize=30
 let NERDTreeShowBookmarks=1
 let NERDTreeRespectWildIgnore=1
 let NERDTreeIgnore=['__pycache__$[[dir]]']
 " TODO: decide keymaps
-nnoremap <Leader>nt :NERDTreeToggle<CR>
-nnoremap <Leader>nc :NERDTreeCWD<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
+nnoremap <Leader>c :NERDTreeCWD<CR>
 
 "> nerdcommenter
 Plug 'scrooloose/nerdcommenter'
@@ -204,35 +208,62 @@ nnoremap <Leader>gs :Gstatus<CR>
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsSnippetDirectories=['ultisnips', 'bundle/vim-snippets/UltiSnips', 'bundle/custom/snips']
 let g:UltiSnipsSnippetsDir='~/.vim/bundle/custom/snips/'
-let g:UltiSnipExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-n>'
-let g:UltiSnipsJumpBackwardTrigger='<c-m>'
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<a-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-m>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 " Python settings
 let g:ultisnips_python_quoting_style = 'single'
 " Use for Python doc style
 let g:ultisnips_python_style = 'sphinx'
 
+"> YouCompleteMe
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang --system-boost' }
+let g:ycm_confirm_extra_conf = 0
+
+"> YCM-Generator
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
 "> syntastic
-Plug 'vim-syntastic/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Plug 'vim-syntastic/syntastic'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_cpp_config_file = '.clang_complete'
+
+"> neomake
+" Plug 'neomake/neomake'
+" Plug 'tpope/vim-dispatch'
 
 "> clang_complete
-Plug 'Rip-Rip/clang_complete'
+" Plug 'Rip-Rip/clang_complete'
+" let g:clang_use_library=1
 " This only works if the system is Arch Linux 64bit.
-let g:clang_library_path='/usr/lib64/libclang.so'
+" let g:clang_library_path='/usr/lib64/libclang.so'
+" let g:clang_snippets=1
+" let g:clang_snippets_engine = 'ultisnips'
+" let g:clang_auto_select = 1
+" let g:clang_complete_copen = 1
+" let g:clang_periodic_quickfix = 1
+" let g:clang_complete_optional_args_in_snippets = 1
+" let g:clang_close_preview = 1
+" let g:clang_complete_macros = 1
+" let g:clang_complete_patterns = 1
 
 "> vim-clang-format
 Plug 'rhysd/vim-clang-format'
+let g:clang_format#code_style = 'google'
+let g:clang_format#detect_style_file = 1 " .clang-format
+let g:clang_format#auto_format = 1
+let g:clang_format#auto_formatexpr = 1
 
 "> vim-autocomplpop
-Plug 'othree/vim-autocomplpop'
-Plug 'L9' " Needed by vim-autocomplpop, github: vim-scripts/L9
+" Plug 'othree/vim-autocomplpop'
+" Plug 'L9' " Needed by vim-autocomplpop, github: vim-scripts/L9
 
 "> vim-airline
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -245,12 +276,19 @@ endif
 let g:airline_symbols.notexists = '%'
 
 "> vim-tomorrow-theme
-Plug 'chriskempson/vim-tomorrow-theme'
+" Plug 'chriskempson/vim-tomorrow-theme'
 " Set colorscheme after all plugins are loaded.
 
 "> papercolor-theme
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/c-syntax.vim'
 " Set colorscheme after all plugins are loaded.
+
+"> vim-ft-specific
+Plug 'ste99w/vim-ft-specific'
+
+"> eink.vim
+" Plug 'clinstid/eink.vim'
 
 " Make sure you use single quotes
 
@@ -287,13 +325,18 @@ call plug#end()
 " }}} < Plugin Settings (vim-plug)
 
 " {{{ > Post Plugin Settings
-colorscheme PaperColor
+syntax off
+highlight Normal guifg=#444444 guibg=#eeeeee
+set background=light
+" colorscheme PaperColor
+" colorscheme eink
 " }}} < Post Plugin Settings
 
 " {{{ > Auto Commands
 
 "> Automatic reloading .vimrc after each :write.
 autocmd! BufWritePost vimrc source %
+autocmd! BufWritePost .vimrc source %
 
 "> Remove trailing whitespaces.
 autocmd BufWritePre * :%s/\s\+$//e
